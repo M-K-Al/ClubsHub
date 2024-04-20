@@ -1,0 +1,545 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+input, input:hover, input:focus-visible, input:focus, input:focus-within, input:checked, input:active {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* variables */
+:root {
+    /* colors */
+    --gray-50: #f0f0f0;
+    --gray-100: #e9eae8;
+    --gray-200: #d5d2d1;
+    --gray-300: #c0bcb9;
+    --gray-400: #aba5a2;
+    --gray-500: #968f8b;
+    --gray-600: #78726f;
+    --gray-700: #5a5653;
+    --gray-800: #3c3938;
+    --gray-900: #1e1d1c;
+    --primary-100: #ccf1f8;
+    --primary-200: #99e3f1;
+    --primary-300: #66d5e9;
+    --primary-400: #33c7e2;
+    --primary-500: #00b9db;
+    --primary-600: #0094af;
+    --primary-700: #006f83;
+    --primary-800: #004a58;
+    --primary-900: #00252c;
+    --secondary-100: #fff1cc;
+    --secondary-200: #ffe399;
+    --secondary-300: #ffd466;
+    --secondary-400: #ffc633;
+    --secondary-500: #ffb800;
+    --secondary-600: #cc9300;
+    --secondary-700: #996e00;
+    --secondary-800: #664a00;
+    --secondary-900: #332500;
+
+    /* fonts */
+    --regular-xxs-font-family: "Segoe UI", "Microsoft Sans Serif", sans-serif, serif;
+    --regular-xxs-font-size: 10px;
+    --regular-xxs-line-height: 12px;
+    --regular-xxs-font-weight: 400;
+    --regular-xxs-font-style: normal;
+    --regular-xs-font-family: "Segoe UI", "Microsoft Sans Serif", sans-serif, serif;
+    --regular-xs-font-size: 12px;
+    --regular-xs-line-height: 16px;
+    --regular-xs-font-weight: 400;
+    --regular-xs-font-style: normal;
+    --regular-sm-font-family: "Segoe UI", "Microsoft Sans Serif", sans-serif, serif;
+    --regular-sm-font-size: 14px;
+    --regular-sm-line-height: 20px;
+    --regular-sm-font-weight: 400;
+    --regular-sm-font-style: normal;
+    --regular-regular-font-family: "Segoe UI", "Microsoft Sans Serif", sans-serif, serif;
+    --regular-regular-font-size: 16px;
+    --regular-regular-line-height: 22px;
+    --regular-regular-font-weight: 400;
+    --regular-regular-font-style: normal;
+    --regular-md-font-family: "Segoe UI", "Microsoft Sans Serif", sans-serif, serif;
+    --regular-md-font-size: 18px;
+    --regular-md-line-height: 24px;
+    --regular-md-font-weight: 400;
+    --regular-md-font-style: normal;
+    --regular-lg-font-family: "Segoe UI", "Microsoft Sans Serif", sans-serif, serif;
+    --regular-lg-font-size: 20px;
+    --regular-lg-line-height: 28px;
+    --regular-lg-font-weight: 400;
+    --regular-lg-font-style: normal;
+    --regular-xl-font-family: "Segoe UI", "Microsoft Sans Serif", sans-serif, serif;
+    --regular-xl-font-size: 24px;
+    --regular-xl-line-height: 32px;
+    --regular-xl-font-weight: 400;
+    --regular-xl-font-style: normal;
+    --regular-xxl-font-family: "Segoe UI", "Microsoft Sans Serif", sans-serif, serif;
+    --regular-xxl-font-size: 28px;
+    --regular-xxl-line-height: 38px;
+    --regular-xxl-font-weight: 400;
+    --regular-xxl-font-style: normal;
+    --semibold-xxs-font-family: Inter-SemiBold, sans-serif;
+    --semibold-xxs-font-size: 10px;
+    --semibold-xxs-line-height: normal;
+    --semibold-xxs-font-weight: 600;
+    --semibold-xxs-font-style: normal;
+    --semibold-xs-font-family: SegoeUi-Semibold, sans-serif;
+    --semibold-xs-font-size: 12px;
+    --semibold-xs-line-height: 16px;
+    --semibold-xs-font-weight: 600;
+    --semibold-xs-font-style: normal;
+    --semibold-s-font-family: SegoeUi-Semibold, sans-serif;
+    --semibold-s-font-size: 14px;
+    --semibold-s-line-height: 20px;
+    --semibold-s-font-weight: 600;
+    --semibold-s-font-style: normal;
+    --semibold-regular-font-family: SegoeUi-Semibold, sans-serif;
+    --semibold-regular-font-size: 16px;
+    --semibold-regular-line-height: 22px;
+    --semibold-regular-font-weight: 600;
+    --semibold-regular-font-style: normal;
+    --semibold-md-font-family: SegoeUi-Semibold, sans-serif;
+    --semibold-md-font-size: 18px;
+    --semibold-md-line-height: 24px;
+    --semibold-md-font-weight: 600;
+    --semibold-md-font-style: normal;
+    --semibold-lg-font-family: SegoeUi-Semibold, sans-serif;
+    --semibold-lg-font-size: 20px;
+    --semibold-lg-line-height: 28px;
+    --semibold-lg-font-weight: 600;
+    --semibold-lg-font-style: normal;
+    --semibold-xl-font-family: SegoeUi-Semibold, sans-serif;
+    --semibold-xl-font-size: 24px;
+    --semibold-xl-line-height: 32px;
+    --semibold-xl-font-weight: 600;
+    --semibold-xl-font-style: normal;
+    --semibold-xxl-font-family: SegoeUi-Semibold, sans-serif;
+    --semibold-xxl-font-size: 28px;
+    --semibold-xxl-line-height: 38px;
+    --semibold-xxl-font-weight: 600;
+    --semibold-xxl-font-style: normal;
+
+    font-family: var(--regular-sm-font-family), serif;
+    font-weight: var(--regular-sm-font-weight);
+    line-height: var(--regular-sm-line-height);
+    font-size: var(--regular-sm-font-size);
+}
+
+/********************** Start of Components **********************/
+
+.white {
+    filter: invert(100%) sepia(36%) saturate(313%) hue-rotate(6deg) brightness(118%) contrast(100%);
+}
+
+.icon {
+    display: inline-flex;
+    width: 24px;
+    height: 24px;
+    user-select: none;
+    pointer-events: none;
+    content: none;
+}
+
+.icon.xs {
+    width: 18px;
+    height: 18px;
+}
+
+.icon.sm {
+    width: 20px;
+    height: 20px;
+}
+
+.icon.md {
+    width: 22px;
+    height: 22px;
+}
+
+.icon.lg {
+    width: 24px;
+    height: 24px;
+}
+
+.hyperlink {
+    color: var(--primary-600);
+    text-decoration: underline 0.1em;
+    cursor: pointer;
+}
+
+.hyperlink:hover {
+    color: var(--primary-700);
+    text-decoration: none;
+}
+
+.textbox {
+    display: inline-flex;
+    background-color: var(--gray-50);
+    border-radius: 6px;
+    border-bottom: solid black 0.2ex;
+    padding: 8px 12px;
+    width: fit-content;
+    outline: none;
+    max-height: fit-content;
+    box-sizing: border-box;
+    margin-bottom: 0.2ex;
+    gap: 10px;
+}
+
+.textbox:focus-within {
+    margin-bottom: 0.1ex;
+    border-bottom-width: 0.3ex;
+}
+
+.textbox > .textbox-input {
+    background-color: transparent;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 100%;
+}
+
+.textbox > .textbox-input:focus-visible {
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+}
+
+.switch {
+    display: inline-flex;
+    width: 54px;
+    height: 22px;
+    border-radius: 99999px;
+    border: 1px black solid;
+    box-sizing: border-box;
+    user-select: none;
+    cursor: pointer;
+}
+
+.chip input[type="checkbox"] {
+    display: none;
+}
+
+.switch::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    margin: auto 0 auto 4px;
+    background-color: black;
+    border-radius: 999px;
+    z-index: 10;
+    transition: margin-left 200ms cubic-bezier(0.0, 0.0, 0.3, 1.0);
+}
+
+.switch:has(input:checked) {
+    background-color: var(--primary-400);
+    border-color: var(--primary-400);
+}
+
+.switch:has(input:checked)::before {
+    margin-left: calc(100% - 20px);
+    background-color: white;
+    border-radius: 999px;
+}
+
+.checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: solid 1px black;
+    border-radius: 4px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.checkbox:hover {
+    background-color: var(--primary-100);
+}
+
+.checkbox:checked {
+    border-color: var(--primary-400);
+    background-color: var(--primary-400);
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAyNiAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTkgMTYuMTdMNC44MyAxMkwzLjQxIDEzLjQxTDkgMTlMMjEgN0wxOS41OSA1LjU5TDkgMTYuMTdaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4=");
+}
+
+.checkbox:checked:hover {
+    background-color: var(--primary-500);
+}
+
+input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border: solid 1px black;
+    border-radius: 999px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+input[type="radio"]:hover {
+    background-color: var(--primary-100);
+}
+
+input[type="radio"]:checked {
+    border-color: var(--primary-400);
+    background-color: var(--primary-400);
+    background-image: url("data:image/svg+xml;base64,PHN2ZyBmaWxsPSJ3aGl0ZSIgd2lkdGg9IjQ2IiBoZWlnaHQ9IjQ2IiB2aWV3Qm94PSIwIDAgMjAgMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTcuOCAxMGEyLjIgMi4yIDAgMCAwIDQuNCAwIDIuMiAyLjIgMCAwIDAtNC40IDB6Ii8+PC9zdmc+");
+}
+
+input[type="radio"]:checked:hover {
+    background-color: var(--primary-500);
+}
+
+.primary-button {
+    display: inline-flex;
+    align-items: center;
+    color: white;
+    border-radius: 4px;
+    padding: 9px 12px 7px 12px;
+    width: fit-content;
+    background-color: black;
+    border-bottom: solid 3px black;
+    cursor: pointer;
+    gap: 8px;
+    user-select: none;
+    transition: border-color 200ms ease-in-out;
+}
+
+.primary-button:hover {
+    border-color: var(--secondary-500);
+}
+
+.secondary-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 10px 7px 8px;
+    width: fit-content;
+    border-bottom: solid 3px transparent;
+    cursor: pointer;
+    gap: 8px;
+    user-select: none;
+    transition: border-color 200ms ease-in-out;
+}
+
+.secondary-button:hover {
+    border-color: black;
+}
+
+.tab {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    gap: 8px;
+    transition: background-color 200ms ease-in-out;
+}
+
+.tab.circular {
+    width: fit-content;
+
+    position: relative;
+    place-content: center;
+    border-radius: 999px;
+}
+
+.tab .tooltip {
+    display: none;
+    color: white;
+    padding: 0.25em 0.5em;
+    position: absolute;
+    font-size: var(--regular-xs-font-size);
+    line-height: var(--regular-xs-line-height);
+    margin-top: 200%;
+    border-radius: 4px;
+    background-color: black;
+    user-select: none;
+    opacity: 70%;
+    z-index: 50;
+}
+
+.tab:hover {
+    background-color: var(--gray-100);
+}
+
+.tab.secondary:hover {
+    background-color: var(--primary-100);
+}
+
+.tab:hover > .tooltip {
+    display: block;
+}
+
+.chip {
+    display: inline-flex;
+    color: black;
+    width: fit-content;
+    padding: 8px 16px;
+    background-color: var(--primary-200);
+    border-radius: 999px;
+    cursor: pointer;
+    place-items: center;
+    user-select: none;
+}
+
+.chip:hover {
+    background-color: var(--primary-300);
+}
+
+.chip input[type="checkbox"] {
+    display: none;
+}
+
+.chip:has(input:checked) {
+    color: white;
+    background-color: black;
+}
+
+.chip::before {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(100%);
+    width: 0;
+    height: 18px;
+    content: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAyNCAyNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTkgMTYuMTdMNC44MyAxMkwzLjQxIDEzLjQxTDkgMTlMMjEgN0wxOS41OSA1LjU5TDkgMTYuMTdaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4=");
+    transition: all 150ms cubic-bezier(0.25, 1, 0.25, 1);
+}
+
+.chip:has(input:checked)::before {
+    visibility: visible;
+    margin-right: 8px;
+    width: 18px;
+    opacity: 1;
+    transform: translateX(0%);
+}
+
+.chip:hover:has(input:checked) {
+    background-color: var(--gray-900);
+}
+
+label {
+    width: fit-content;
+}
+
+
+/********************** End of Components **********************/
+
+.nav-bar {
+    @apply inline-flex w-full items-center justify-between py-4;
+}
+
+.nav-bar-items {
+    @apply justify-center items-center gap-2 flex;
+}
+
+.card {
+    @apply absolute flex h-44 w-44 cursor-pointer items-center justify-center rounded-2xl p-2 text-center shadow-xl transition delay-75 duration-300;
+}
+
+.card:hover {
+    @apply rotate-0 scale-110;
+}
+
+.cards-container > .card:nth-child(odd) {
+    @apply translate-x-20;
+}
+
+.cards-container > .card:nth-child(even) {
+    @apply -translate-x-20;
+}
+
+.cards-container:hover > *:not(:hover) {
+    @apply scale-75 opacity-25 shadow-none drop-shadow-none;
+}
+
+.cards-container:hover > .card:nth-child(odd):not(:hover) {
+    @apply translate-x-28;
+}
+
+.cards-container:hover > .card:nth-child(even):not(:hover) {
+    @apply -translate-x-28;
+}
+
+.cards-container:hover > .card:nth-child(1):not(:hover),
+.cards-container:hover > .card:nth-child(2):not(:hover) {
+    @apply -translate-y-32;
+}
+
+.cards-container:hover > .card:nth-child(1):not(:hover),
+.cards-container:hover > .card:nth-child(2):not(:hover) {
+    @apply -translate-y-32;
+}
+
+.cards-container:hover > .card:nth-child(3):not(:hover),
+.cards-container:hover > .card:nth-child(4):not(:hover) {
+    @apply -translate-y-14;
+}
+
+.cards-container:hover > .card:nth-child(1):hover ~ .card:nth-child(3),
+.cards-container:hover > .card:nth-child(2):hover ~ .card:nth-child(4) {
+    @apply translate-y-14;
+}
+
+.cards-container:hover > .card:nth-child(odd):hover ~ .card:nth-child(5),
+.cards-container:hover > .card:nth-child(even):hover ~ .card:nth-child(6) {
+    @apply translate-y-24;
+}
+
+.cards-container:hover > .card:nth-child(5):hover,
+.cards-container:hover > .card:nth-child(6):hover {
+    @apply translate-y-14;
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <link rel="stylesheet" href="css/build.css">
+    <link rel="stylesheet" href="/src/common/base.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+            integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+</head>
+<body class="">
+<div class="mx-auto flex w-full max-w-2xl flex-col p-8">
+    <div class="flex flex-col gap-4 [&>*]:flex [&>*]:justify-between [&>*]:gap-8 [&>*]:items-center [&>div>span]:font-bold">
+        <div>
+            <span>Hyperlink</span>
+            <a href="#" class="hyperlink">Hyperlink</a>
+        </div>
+        <div>
+            <span>Icons:</span>
+            <div class="flex flex-col [&>*]:flex [&>*]:gap-8 [&>*]:justify-between">
+                <div>
+                    <span>Extra Small</span>
+                    <img class="icon xs" src="/src/assets/icons/search.svg" alt="">
+                </div>
+                <div>
+                    <span>Small</span>
+                    <img class="icon sm" src="/src/assets/icons/search.svg" alt="">
+                </div>
+                <div>
+                    <span>Medium</span>
+                    <img class="icon md" src="/src/assets/icons/search.svg" alt="">
+                </div>
+                <div>
+                    <span>Large</span>
+                    <img class="icon lg" src="/src/assets/icons/search.svg" alt="">
+                </div>
+            </div>
+        </div>
+        <div>
+            <span>Textbox</span>
+            <label class="textbox">
+                <input class="textbox-input" placeholder="Label" type="text">
+            </label>
+        </div>
+        <div>
+            <span>Textbox With Icon</span>
+            <label class="textbox">
+                <img class="icon xs" src="/src/assets/icons/search.svg" alt="">
+                <input class="textbox-input" placeholder="Label" type="text">
+            </label>
+        </div>
+        <div>
+            <span>Textbox With Left Icon</span>
+            <label class="textbox">
+                <input class="textbox-input" placeholder="Label" type="text">
+                <img class="icon xs" src="/src/assets/icons/search.svg" alt="">
+            </label>
+        </div>
+        <div>
+            <span>Switch</span>
+            <label class="switch"><input type="checkbox"></label>
+        </div>
+        <div>
+            <span>Checkbox</span>
+            <label><input type="checkbox" class="checkbox"></label>
+        </div>
+        <div>
+            <span>Radio Button</span>
+            <label><input type="radio"></label>
+        </div>
+        <div>
+            <span>Primary Button</span>
+            <div class="primary-button">
+                <span>Button</span>
+            </div>
+        </div>
+        <div>
+            <span>Primary Button With Icon</span>
+            <div class="primary-button">
+                <img class="icon white xs" src="/src/assets/icons/edit_profile.svg" alt="">
+                <span>Button</span>
+            </div>
+        </div>
+        <div>
+            <span>Secondary Button</span>
+            <div class="secondary-button">
+                <span>Button</span>
+            </div>
+        </div>
+        <div>
+            <span>Secondary Button With Icon</span>
+            <div class="secondary-button">
+                <img class="icon sm" src="/src/assets/icons/settings.svg" alt="">
+                <span>Button</span>
+            </div>
+        </div>
+        <div>
+            <span>Tab</span>
+            <div class="tab">
+                <span>Test</span>
+            </div>
+        </div>
+        <div>
+            <span>Secondary Tab</span>
+            <div class="tab secondary">
+                <span>Test</span>
+            </div>
+        </div>
+        <div>
+            <span>Tab With Icon</span>
+            <div class="tab">
+                <img class="icon xs" src="/src/assets/icons/home.svg" alt="">
+                <span>Test</span>
+            </div>
+        </div>
+        <div>
+            <span>Icon Tab</span>
+            <div class="tab circular">
+                <img class="icon md" src="/src/assets/icons/home.svg" alt="">
+            </div>
+        </div>
+        <div>
+            <span>Icon Tab With Tooltip</span>
+            <div class="tab circular">
+                <img class="icon md" src="/src/assets/icons/home.svg" alt="">
+                <span class="tooltip">Tooltip</span>
+            </div>
+        </div>
+        <div>
+            <span>Chip</span>
+            <label class="chip"><span>Chip</span><input type="checkbox"></label>
+        </div>
+    </div>
+</div>
+<script src="/src/common/base.js"></script>
+</body>
+</html>
