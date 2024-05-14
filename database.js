@@ -4,7 +4,8 @@ let _db;
 
 async function connectDB() {
     if (!_db) {
-        const client = new MongoClient("mongodb://localhost:27017/clubs-hub");
+        const uri = "mongodb+srv://admin:admin@clubs-hub.fjilfcm.mongodb.net/?retryWrites=true&w=majority&appName=clubs-hub";
+        const client = new MongoClient(uri);
         await client.connect();
         _db = client.db('clubs-hub');
     }
