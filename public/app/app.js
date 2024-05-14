@@ -44,6 +44,8 @@ $().ready(function () {
         messageContent = $("#message-content"),
         categories = $("#categories");
 
+    if (!clubs[0]) messageForm.addClass("hidden");
+
     $("#close-side-panel").on("click", function () {
         localStorage.setItem("side-panel-state", "closed");
         sidePanel.addClass("!hidden");
