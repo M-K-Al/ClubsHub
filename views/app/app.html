@@ -1,0 +1,431 @@
+<!doctype html>
+<!--suppress HtmlUnknownTarget -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../css/build.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!--suppress BadExpressionStatementJS, JSUnresolvedReference, JSUnnecessarySemicolon -->
+    <script>
+        const clubs = {{clubs | dump | safe}};
+    </script>
+    <title>Clubs Hub</title>
+</head>
+<body class="relative h-screen w-screen flex flex-col max-h-screen">
+<section class="flex h-full w-full flex-col px-4">
+    <nav class="inline-flex h-20 w-full items-center justify-center gap-6 border-b border-gray-900/25 py-2 md:gap-16 lg:gap-36">
+
+        <div class="ml-2 flex items-center justify-center gap-2 md:ml-4 lg:ml-8">
+            <span class="text-xl font-semibold text-black md:text-2xl lg:text-3xl">Clubs Hub</span>
+        </div>
+
+        <div class="flex max-w-full grow">
+            <label class="!w-full !border-0 textbox !rounded-full focus-within:!shadow-none">
+                <img class="icon xs !opacity-70" src="../assets/icons/search.svg" alt="">
+                <input class="textbox-input" placeholder="Search" type="text">
+            </label>
+        </div>
+
+        <div class="flex items-center justify-center gap-1 md:gap-1.5">
+
+            <div class="tab circular !hidden md:!flex">
+                <img class="icon md" src="../assets/icons/explore.svg" alt="">
+                <span class="tooltip">Explore Clubs</span>
+            </div>
+
+            <div class="tab circular !hidden md:!flex">
+                <img class="icon md" src="../assets/icons/notifications.svg" alt="">
+                <span class="tooltip">Notifications</span>
+            </div>
+
+            <div data-modal-id="profile-modal" class="tab circular modal-pioneer">
+                <img class="icon md" src="../assets/icons/person.svg" alt="">
+                <span class="tooltip">Profile</span>
+            </div>
+
+        </div>
+
+        <section id="profile-modal" class="absolute z-50 hidden h-full w-full -top-[12rem] modal">
+            <div class="bottom-0 my-auto mr-8 ml-auto flex h-fit w-fit modal-body">
+
+                <div class="relative inline-flex max-w-min flex-col items-center justify-center gap-4 rounded-2xl bg-white p-4 px-4 shadow-2xl drop-shadow-2xl min-w-72">
+
+                    <div class="flex flex-col items-center justify-center gap-2">
+
+                        <div class="tab circular !p-4">
+                            <img src="../assets/icons/person.svg" class="icon !w-20 !h-20" alt="User Profile Picture">
+                        </div>
+
+                        <div class="font-semibold leading-snug text-black">{{user.lastName}}, {{user.firstName}}</div>
+
+                        <!--                        <div class="text-xs font-semibold leading-none text-stone-700/80">Computer Science, Sophomore-->
+                        <!--                        </div>-->
+
+                    </div>
+
+                    <div class="flex w-full flex-col items-stretch">
+
+                        <div class="inline-flex !gap-4 rounded-lg !p-4 !duration-0 tab">
+                            <img class="icon xs" src="../assets/icons/edit_profile.svg" alt="">
+                            <span class="select-none font-semibold">View Profile</span>
+                        </div>
+
+                        <div class="inline-flex !gap-4 rounded-lg !p-4 !duration-0 tab">
+                            <img class="icon xs" src="../assets/icons/settings.svg" alt="">
+                            <span class="select-none font-semibold">Settings</span>
+                        </div>
+
+                        <div id="logout-tab" class="inline-flex !gap-4 rounded-lg !p-4 !duration-0 tab hover:!bg-red-300/65">
+                            <img class="icon xs" src="../assets/icons/logout.svg" alt="">
+                            <span class="select-none font-semibold">Logout</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </nav>
+    <div class="mt-4 flex h-full w-full">
+        <div class="grid-cols-[17.5%,60%,22.5%] grid min-w-full w-full h-full overflow-hidden [&>*]:flex [&>*]:flex-col">
+
+            <section id="clubs-panel" class="border-r border-gray-900/25 pt-4 pl-4">
+
+                <table class="inline-flex w-full flex-col gap-4">
+
+                    <thead>
+                    <tr class="inline-flex w-full">
+                        <th class="inline-flex grow items-center justify-between pr-4">
+                            <span class="font-semibold text-stone-600">Your Clubs</span>
+                            <div data-modal-id="create-club-modal"
+                                 class="tab circular !hidden md:!flex !p-1.5 modal-pioneer">
+                                <img class="opacity-75 icon sm" src="../assets/icons/add.svg" alt="">
+                                <span class="tooltip">Create Club</span>
+                            </div>
+                        </th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="clubs" class="[&>*]:inline-flex [&>*]:w-full">
+
+                    {% for club in clubs %}
+                    <tr data-club-index="{{loop.index0}}" class="club">
+                        <td class="!gap-4 grow !rounded-l-lg !rounded-r-none !p-4 !duration-0 tab">
+                            <img class="icon xs" src="../assets/icons/groups.svg" alt="">
+                            <span class="select-none font-semibold line-clamp-1">{{ club.clubName }}</span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </section>
+
+            <main id="main-panel" class="flex flex-col col-span-2 h-full max-h-[calc(100vh-6rem)]">
+
+                <section id="club-discussion" class="inline-flex h-full flex-col px-4">
+
+                    <header id="club-discussion-header"
+                            class="inline-flex !items-center !justify-between !border-b !border-stone-300 !px-4 !py-[8px] tab">
+
+                        <div class="inline-flex flex-col">
+                        <span id="club-name" class="text-sm font-semibold leading-tight text-black">
+                            {{clubs[0].clubName}}
+                        </span>
+                        </div>
+
+                        <div id="club-events-tab" class="tab circular">
+                            <img class="icon md" src="../assets/icons/event.svg" alt="">
+                            <span class="tooltip">Events</span>
+                        </div>
+
+                    </header>
+
+                    <section style="scrollbar-width: none;" id="messages"
+                             class="inline-flex mx-4 py-4 flex-col h-full gap-1 overflow-x-hidden overflow-y-scroll">
+
+                        {% for message in messages %}
+                        <div class="inline-flex h-fit w-full items-start justify-end gap-1">
+                            <div class="inline-flex items-end justify-end py-1 gap-2.5">
+                                <span class="text-sm font-normal leading-tight text-black select-none">{{ message.timestamp | formatTime }}</span>
+                                <div class="inline-flex flex-col items-start justify-start rounded-tl-2xl rounded-tr-sm rounded-br-2xl rounded-bl-2xl bg-cyan-200 px-4 py-3 shadow gap-1.5">
+                                    <span class="text-sm font-normal leading-tight text-black">{{ message.content }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </section>
+
+                    <section>
+                        <form id="message-form" action="/send-message" method="post">
+                            <label class="textbox !w-full !p-4 !mb-4">
+                                <input type="hidden" id="club-id" name="clubId" value="{{clubs[0]._id}}">
+                                <input required placeholder="Enter a message..."
+                                       id="message-content"
+                                       name="content"
+                                       class="textbox-input"
+                                       type="text">
+                            </label>
+                        </form>
+
+                    </section>
+
+                </section>
+
+                <section id="club-events" class="hidden flex-col px-4">
+                    <header class="inline-flex w-full border-b border-stone-300 py-2">
+                        <div id="close-club-events"
+                             class="!gap-4 grow !rounded-lg !py-2.5 !duration-0 tab">
+                            <img class="icon md" src="../assets/icons/arrow/left.svg" alt="">
+                            <span class="select-none font-semibold line-clamp-1">Discussion</span>
+                        </div>
+                    </header>
+                </section>
+
+            </main>
+
+            <section id="side-panel" class="!hidden">
+
+                <section id="club-info"
+                         class="relative inline-flex h-full flex-col items-center justify-start gap-4 border-l border-stone-300 py-4">
+
+                    <div class="absolute top-0 right-4">
+                        <div id="close-side-panel" class="tab circular">
+                            <img class="icon sm" src="../assets/icons/close.svg" alt="">
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <div class="tab circular !p-6">
+                            <img class="icon !w-40 !h-40" src="../assets/icons/groups.svg" alt="">
+                        </div>
+                    </div>
+
+                    <div class="flex h-14 flex-col items-center justify-start gap-2 self-stretch">
+
+                    <span id="info-club-name"
+                          class="self-stretch text-center text-xl font-semibold leading-7 text-black">
+                        {{clubs[0].clubName}}
+                    </span>
+
+                        <span id="info-club-description"
+                              class="self-stretch text-center text-sm font-normal leading-tight text-black">
+                        {{clubs[0].clubDescription}}
+                    </span>
+                    </div>
+
+                    <div style="scrollbar-width: none;"
+                         class="mx-12 flex items-center justify-center self-stretch overflow-scroll scroll">
+
+                        <div id="categories"
+                             class="inline-flex items-center self-center place-self-center w-full gap-1 px-12 [&>*]:!text-xs [&>*]:!min-w-fit [&>*]:!w-fit [&>*]:!px-2 [&>*]:!py-0 [&>*]:!cursor-auto">
+                        </div>
+
+                    </div>
+
+                    <div class="flex flex-col items-start justify-start self-stretch">
+
+                        <div id="members-tab"
+                             class="inline-flex w-full !gap-4 !rounded-r-lg !rounded-l-none !duration-0 tab !py-4 !pl-8">
+                            <img class="icon xs" src="../assets/icons/groups.svg" alt="">
+                            <span class="select-none text-sm font-medium text-black/85">Members</span>
+                        </div>
+
+                        <div class="inline-flex w-full !gap-4 !rounded-r-lg !rounded-l-none !duration-0 !py-4 !pl-8">
+                            <img class="icon xs" src="../assets/icons/location.svg" alt="">
+                            <span class="select-none text-sm font-medium text-black/85">Location: KFUPM Mall, Room 112</span>
+                        </div>
+
+                        <div class="inline-flex w-full !gap-4 !rounded-r-lg !rounded-l-none !duration-0 !py-4 !pl-8">
+                            <img class="icon xs" src="../assets/icons/time.svg" alt="">
+                            <span class="select-none text-sm font-medium text-black/85">Meeting Times: Every Sunday & Wednesday 7:15 PM</span>
+                        </div>
+
+                        <div id="leave-club-tab"
+                             class="inline-flex w-full !gap-4 !rounded-r-lg !rounded-l-none !duration-0 tab !py-4 !pl-8 hover:!bg-red-300/65">
+                            <img class="icon xs" src="../assets/icons/logout.svg" alt="">
+                            <span class="select-none text-sm font-medium text-black/85">Leave Club</span>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section id="club-members"
+                         class="relative hidden h-full flex-col items-center justify-start gap-4 border-l border-stone-300">
+
+                    <table class="inline-flex w-full flex-col gap-4">
+
+                        <thead>
+                        <tr class="inline-flex w-full">
+                            <th id="close-club-members"
+                                class="!gap-4 grow !rounded-r-lg !rounded-l-none !py-4 !duration-0 tab">
+                                <img class="icon md" src="../assets/icons/arrow/left.svg" alt="">
+                                <span class="select-none font-semibold line-clamp-1">Club Info</span>
+                            </th>
+                        </tr>
+                        </thead>
+
+                        <tbody class="[&>*]:inline-flex [&>*]:w-full">
+
+                        <tr class="">
+                            <td class="!gap-4 grow !rounded-r-lg !rounded-l-none !p-4 !pl-8 !duration-0 tab">
+                                <img class="icon xs" src="../assets/icons/person.svg" alt="">
+                                <span class="select-none font-semibold line-clamp-1">
+                                    {{user.lastName}}, {{user.firstName}}
+                                </span>
+                            </td>
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+
+                </section>
+
+            </section>
+
+        </div>
+    </div>
+</section>
+
+<section id="create-club-modal" class="absolute z-50 hidden h-full w-full bg-black/70 modal">
+    <div class="m-auto flex h-fit w-fit modal-body">
+        <div class="relative inline-flex max-w-lg flex-col items-center justify-center rounded-2xl bg-white px-12 shadow">
+
+            <div class="absolute top-3 right-3 flex">
+                <div id="close-modal" class="tab !p-1.5">
+                    <img class="opacity-70 icon sm" src="../assets/icons/close.svg" alt="">
+                </div>
+            </div>
+
+            <div class="flex w-full flex-col gap-4 pt-8">
+                <span class="text-center text-2xl font-bold text-black">Create a Club</span>
+                <div class="self-stretch text-justify text-sm font-medium leading-tight text-black/85">Turn your passion
+                    into action. Start a club and share your interests, connect with others, and make a lasting impact.
+                </div>
+            </div>
+
+            <form action="/create-club" method="post" class="flex w-full flex-col gap-4 py-6">
+
+                <div class="flex w-full flex-col items-start justify-start gap-2">
+                    <span class="text-center text-sm font-semibold text-black">Club Name</span>
+                    <label class="textbox !w-full">
+                        <input required name="clubName" class="textbox-input" type="text">
+                    </label>
+                </div>
+
+                <div class="flex w-full flex-col items-start justify-start gap-2">
+                    <span class="text-center text-sm font-semibold text-black">Club Description</span>
+                    <label class="textbox !w-full">
+                        <input required name="clubDescription" class="textbox-input" type="text">
+                    </label>
+                </div>
+
+                <div class="flex w-full flex-wrap justify-center gap-1 text-center">
+
+                    <label class="chip !py-1 !px-3 text-xs">
+                        <span>Academic</span>
+                        <input name="categories" value="academic" type="checkbox">
+                    </label>
+
+                    <label class="chip !py-1 !px-3 text-xs">
+                        <span>Arts & Culture</span>
+                        <input name="categories" value="arts_culture" type="checkbox">
+                    </label>
+
+                    <label class="chip !py-1 !px-3 text-xs">
+                        <span>Sports</span>
+                        <input name="categories" value="sports" type="checkbox">
+                    </label>
+
+                    <label class="chip !py-1 !px-3 text-xs">
+                        <span>Hobbies</span>
+                        <input name="categories" value="hobbies" type="checkbox">
+                    </label>
+
+                    <label class="chip !py-1 !px-3 text-xs">
+                        <span>Volunteering</span>
+                        <input name="categories" value="volunteering" type="checkbox">
+                    </label>
+
+                    <label class="chip !py-1 !px-3 text-xs">
+                        <span>Professional Development</span>
+                        <input name="categories" value="professionalDevelopment" type="checkbox">
+                    </label>
+
+                    <label class="chip !py-1 !px-3 text-xs">
+                        <span>Religious & Spiritual</span>
+                        <input name="categories" value="religious_spiritual" type="checkbox">
+                    </label>
+
+                    <label class="chip !py-1 !px-3 text-xs">
+                        <span>Adventure</span>
+                        <input name="categories" value="adventure" type="checkbox">
+                    </label>
+
+                    <label class="chip !py-1 !px-3 text-xs">
+                        <span>Language & Literature</span>
+                        <input name="categories" value="language_literature" type="checkbox">
+                    </label>
+
+                    <label class="chip !py-1 !px-3 text-xs">
+                        <span>Music & Dance</span>
+                        <input name="categories" value="music_dance" type="checkbox">
+                    </label>
+
+                    <label class="chip !py-1 !px-3 text-xs">
+                        <span>Film & Media</span>
+                        <input name="categories" value="film_media" type="checkbox">
+                    </label>
+
+                    <label class="chip !py-1 !px-3 text-xs">
+                        <span>Gaming & Esports</span>
+                        <input name="categories" value="gaming_esports" type="checkbox">
+                    </label>
+
+                    <label class="chip !py-1 !px-3 text-xs">
+                        <span>Business & Entrepreneurship</span>
+                        <input name="categories" value="business_entrepreneurship" type="checkbox">
+                    </label>
+
+                    <label class="chip !py-1 !px-3 text-xs">
+                        <span>STEM (Science, Technology, Engineering, & Math)</span>
+                        <input name="categories" value="stem" type="checkbox">
+                    </label>
+
+                    <label class="chip !py-1 !px-3 text-xs">
+                        <span>Design & Creativity</span>
+                        <input name="categories" value="design_creativity" type="checkbox">
+                    </label>
+
+                    <label class="chip !py-1 !px-3 text-xs">
+                        <span>International & Global</span>
+                        <input name="categories" value="international_global" type="checkbox">
+                    </label>
+
+                    <label class="chip !py-1 !px-3 text-xs">
+                        <span>Mental Health & Advocacy</span>
+                        <input name="categories" value="mental_health_advocacy" type="checkbox">
+                    </label>
+                </div>
+
+                <button type="submit" class="primary-button !py-3 flex !w-full drop-shadow justify-center">
+                    <span>Create Club</span>
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+</section>
+
+<script src="../common/base.js"></script>
+<script src="../app/app.js"></script>
+</body>
+</html>

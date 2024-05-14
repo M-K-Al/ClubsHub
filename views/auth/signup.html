@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../css/build.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <title>Clubs Hub - Signup</title>
+</head>
+<body class="flex h-screen w-screen">
+
+<div class="relative flex h-full w-full gap-2 overflow-x-hidden md:gap-4">
+
+    <div class="absolute isolate -z-10">
+        <svg class="h-screen" viewBox="0 0 900 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.85" filter="url(#bg-filter)">
+                <path d="m-650 750v-1035c144 12 1222-211 1402 18 36 46 47 74 47 124 0 51-47 74-47 124 0 50 47 73 47 124 0 50-47 73-47 124 0 50 47 73 47 123 0 51-47 74-47 124 0 50 47 74 47 124 0 50-11 78-47 124-180 229-1459 14-1407 30z"
+                      fill="url(#bg-paint)"/>
+            </g>
+            <defs>
+                <filter id="bg-filter" x="-13" y="-346" width="830" height="1713" filterUnits="userSpaceOnUse"
+                        color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                   result="hardAlpha"/>
+                    <feOffset dy="-1"/>
+                    <feGaussianBlur stdDeviation="2"/>
+                    <feComposite in2="hardAlpha" operator="out"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_619_756"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_619_756" result="shape"/>
+                </filter>
+                <linearGradient id="bg-paint" x1="402" y1="-341" x2="402" y2="1364"
+                                gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#00CFF4" offset="0"/>
+                    <stop offset="1" stop-color="#003E49"/>
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+
+    <div class="hidden basis-1/2 flex-col items-start justify-between self-stretch p-6 sm:flex md:basis-[45%] lg:px-12 lg:py-8">
+
+        <a href="/index" class="text-2xl font-semibold text-white leading-[38px] md:text-3xl">Clubs Hub</a>
+
+        <div class="flex flex-col gap-4">
+
+            <span class="text-lg font-bold leading-snug text-white md:text-xl lg:text-2xl">Welcome to Clubs Hub!</span>
+
+            <p class="text-justify font-medium leading-snug text-gray-100/95">Clubs Hub is your one-stop
+                platform for all university club activities. Whether you’re looking to join a new club, stay updated
+                with your current clubs, or manage a club of your own, we’ve got you covered.
+            </p>
+
+        </div>
+
+        <div class="inline-flex items-start gap-4 text-xs md:text-sm">
+
+            <span class="text-center leading-tight text-white">Privacy Policy</span>
+
+            <span class="text-center leading-tight text-white">Terms of Service</span>
+
+        </div>
+
+    </div>
+
+    <div class="mx-auto flex h-fit w-full self-center px-2 md:px-4 lg:px-8">
+
+        <div class="flex mx-auto lg:mx-0 w-full max-w-md md:max-w-lg lg:max-w-xl flex-col items-center justify-center rounded-2xl bg-white py-6 md:py-8 drop-shadow-lg px-12 md:px-14 lg:px-16 [&>*]:!w-full ">
+
+            <span class="text-center text-2xl md:text-3xl lg:text-4xl font-bold text-black leading-tight">Sign Up</span>
+
+            <div class="flex flex-col items-center justify-start gap-4 py-4">
+
+                <div class="inline-flex items-start justify-center gap-4">
+
+                    <button tabindex="0" type="button" id="google-oauth"
+                            class="flex w-fit cursor-pointer select-none items-center gap-6 rounded-md border-gray-400 px-6 py-2 text-center text-lg font-medium text-gray-700 shadow-sm transition-colors duration-300 border-[1px] hover:bg-gray-200 hover:opacity-90">
+                        <img src="../assets/icons/logo/google.svg" alt="">
+                        <span>Google</span>
+                    </button>
+
+                    <button tabindex="0" type="button" id="meta-oauth"
+                            class="flex w-fit cursor-pointer select-none items-center gap-6 rounded-md border-gray-400 px-6 py-2 text-center text-lg font-medium text-gray-700 shadow-sm transition-colors duration-300 border-[1px] hover:bg-gray-200 hover:opacity-90">
+                        <img src="../assets/icons/logo/meta.svg" alt="">
+                        <span>Meta</span>
+                    </button>
+
+                </div>
+
+                <div class="inline-flex font-medium text-gray-600">
+                    <span class="text-sm">Already have an account?</span>
+                    <a href="/login" class="px-1 text-sm hyperlink">Login</a>
+                    <span class="text-sm">instead.</span>
+                </div>
+
+            </div>
+
+            <span class="flex bg-black/35 h-px md:my-2"></span>
+
+            <form action="/signup" method="POST" class="flex flex-col gap-2 py-4">
+
+                <div class="flex gap-3">
+
+                    <div class="flex w-full flex-col gap-2">
+                        <span class="text-sm font-semibold text-black">First Name</span>
+                        <label class="textbox !w-full">
+                            <input required name="firstName" class="textbox-input" type="text">
+                        </label>
+                    </div>
+
+                    <div class="flex w-full flex-col gap-2">
+                        <span class="text-sm font-semibold text-black">Last Name</span>
+                        <label class="textbox !w-full">
+                            <input required name="lastName" class="textbox-input" type="text">
+                        </label>
+                    </div>
+
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <span class="text-sm font-semibold text-black">Username</span>
+                    <label class="textbox !w-full">
+                        <input required name="username" class="textbox-input" type="text">
+                    </label>
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <span class="text-sm font-semibold text-black">Email</span>
+                    <label class="textbox !w-full">
+                        <input required name="email" class="textbox-input" type="email">
+                    </label>
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <span class="text-sm font-semibold text-black">Password</span>
+                    <label class="textbox !w-full">
+                        <input required name="password" class="textbox-input" type="password">
+                    </label>
+                </div>
+
+                <div class="inline-flex w-full py-1">
+                    <label class="inline-flex items-center gap-2">
+                        <input required type="checkbox" class="checkbox">
+                        <span>I agree to the Privacy Policy and the Terms of Service</span>
+                    </label>
+                </div>
+
+                <button type="submit"
+                        class="primary-button !py-3 !mt-2 text-lg flex !w-full drop-shadow justify-center">
+                    Sign Up
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>
